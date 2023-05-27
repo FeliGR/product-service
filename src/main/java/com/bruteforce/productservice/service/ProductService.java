@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service class that handles product-related operations.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -17,6 +20,11 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+    /**
+     * Creates a new product based on the provided product request.
+     *
+     * @param productRequest the request object containing the product details
+     */
     public void createProduct(ProductRequest productRequest) {
         Product product = Product.builder()
                 .name(productRequest.getName())
@@ -28,11 +36,22 @@ public class ProductService {
         log.info("Product {} is saved", product.getId());
     }
 
+    /**
+     * Retrieves a list of all products.
+     *
+     * @return a list of product responses
+     */
     public List<ProductResponse> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return products.stream().map(this::mapToProductResponse).toList();
     }
 
+    /**
+     * Maps a product entity to its corresponding response DTO.
+     *
+     * @param product the product entity to be mapped
+     * @return the mapped product response DTO
+     */
     private ProductResponse mapToProductResponse(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())
