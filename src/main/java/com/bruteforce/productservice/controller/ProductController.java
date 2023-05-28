@@ -26,7 +26,7 @@ public class ProductController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody ProductRequest productRequest){
+    public void createProduct(@RequestBody ProductRequest productRequest) {
         productService.createProduct(productRequest);
     }
 
@@ -37,7 +37,7 @@ public class ProductController {
      */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductResponse> getAllProducts(){
+    public List<ProductResponse> getAllProducts() {
         return productService.getAllProducts();
     }
 }
